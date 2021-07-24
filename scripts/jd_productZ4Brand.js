@@ -2,12 +2,48 @@
 特务Zx佳沛
 cron 23 0,9 24-27 7 *
 要跑2次，第一次做任务和脚本内互助，第二次才够币抽奖
+目前已知活动
+特务Zx佳沛：node jd_productZ4Brand "47w2FM3CZDer1C7ASmiehTveqG3d" "1000035" "3R4U1Zucma2H3d8cprsCXftSFU8k"
+特务ZxIQOO: node jd_productZ4Brand "3vSst337fy75dNCbfaY1MtEfbKWS" "1000034" "tP4FiMw41hqsXo7oStdPQYSTDeX"
 */
-const $ = new Env('特务Zx佳沛');
+const $ = new Env('特物Z活动');
 const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let cookiesArr = [];
 let UA = ``;
+
+let mallActive=""
+let activityId=""
+let helpEncryptAssignmentId=""
+
+if (process.env.TWZ_MALL_ACT && process.env.TWZ_MALL_ACT != "") {
+  mallActive = process.env.TWZ_MALL_ACT;
+}
+if (process.env.TWZ_ACT_ID && process.env.TWZ_ACT_ID != "") {
+  activityId = process.env.TWZ_ACT_ID;
+}
+if (process.env.HELP_ENCRYPTASSIGNMENTID && process.env.HELP_ENCRYPTASSIGNMENTID != "") {
+  helpEncryptAssignmentId = process.env.HELP_ENCRYPTASSIGNMENTID;
+}
+
+var args = process.argv.splice(2);
+if (args.length > 0) {
+  for (let i = 0; i < args.length; i++) {
+    if (i == 0) {
+      mallActive = args[0];
+      console.log(`特物Z mall active：${mallActive}`);
+    }
+    if (i == 0) {
+      activityId = args[1];
+      console.log(`特物Z activityId：${activityId}`);
+    }
+    if (i == 1) {
+      helpEncryptAssignmentId = args[2];
+      console.log(`互助EncryptAssignmentId：${helpEncryptAssignmentId}`);
+    }
+  }
+}
+
 $.allInvite = [];
 let useInfo = {};
 if ($.isNode()) {
@@ -133,16 +169,16 @@ async function takePostRequest(type) {
       url = `https://api.m.jd.com/api?uuid=${UA.split(";")[4]}&client=wh5&area=&appid=ProductZ4Brand&functionId=showSecondFloorRunInfo&t=${Date.now()}&body=%7B%22source%22:%22run%22%7D`;
       break;
     case 'superBrandTaskList':
-      url = `https://api.m.jd.com/api?uuid=${UA.split(";")[4]}&client=wh5&area=&appid=ProductZ4Brand&functionId=superBrandTaskList&t=${Date.now()}&body=%7B%22source%22:%22run%22,%22activityId%22:1000035,%22assistInfoFlag%22:1%7D`;
+      url = `https://api.m.jd.com/api?uuid=${UA.split(";")[4]}&client=wh5&area=&appid=ProductZ4Brand&functionId=superBrandTaskList&t=${Date.now()}&body=%7B%22source%22:%22run%22,%22activityId%22:${activityId},%22assistInfoFlag%22:1%7D`;
       break;
     case 'superBrandTaskLottery':
-      url = `https://api.m.jd.com/api?uuid=${UA.split(";")[4]}&client=wh5&area=&appid=ProductZ4Brand&functionId=superBrandTaskLottery&t=${Date.now()}&body=%7B%22source%22:%22run%22,%22activityId%22:1000035%7D`;
+      url = `https://api.m.jd.com/api?uuid=${UA.split(";")[4]}&client=wh5&area=&appid=ProductZ4Brand&functionId=superBrandTaskLottery&t=${Date.now()}&body=%7B%22source%22:%22run%22,%22activityId%22:${activityId}%7D`;
       break;
     case 'followShop':
-      url = `https://api.m.jd.com/api?uuid=${UA.split(";")[4]}&client=wh5&area=&appid=ProductZ4Brand&functionId=superBrandDoTask&t=${Date.now()}&body=%7B%22source%22:%22run%22,%22activityId%22:1000035,%22encryptProjectId%22:%22${$.encryptProjectId}%22,%22encryptAssignmentId%22:%22${$.oneTask.encryptAssignmentId}%22,%22assignmentType%22:${$.oneTask.assignmentType},%22itemId%22:%22${$.runInfo.itemId}%22,%22actionType%22:0%7D`;
+      url = `https://api.m.jd.com/api?uuid=${UA.split(";")[4]}&client=wh5&area=&appid=ProductZ4Brand&functionId=superBrandDoTask&t=${Date.now()}&body=%7B%22source%22:%22run%22,%22activityId%22:${activityId},%22encryptProjectId%22:%22${$.encryptProjectId}%22,%22encryptAssignmentId%22:%22${$.oneTask.encryptAssignmentId}%22,%22assignmentType%22:${$.oneTask.assignmentType},%22itemId%22:%22${$.runInfo.itemId}%22,%22actionType%22:0%7D`;
       break;
     case 'help':
-      url = `https://api.m.jd.com/api?uuid=${UA.split(";")[4]}&client=wh5&area=&appid=ProductZ4Brand&functionId=superBrandDoTask&t=${Date.now()}&body=%7B%22source%22:%22run%22,%22activityId%22:1000035,%22encryptProjectId%22:%22${$.encryptProjectId}%22,%22encryptAssignmentId%22:%223R4U1Zucma2H3d8cprsCXftSFU8k%22,%22assignmentType%22:2,%22itemId%22:%22${$.code}%22,%22actionType%22:0%7D`;
+      url = `https://api.m.jd.com/api?uuid=${UA.split(";")[4]}&client=wh5&area=&appid=ProductZ4Brand&functionId=superBrandDoTask&t=${Date.now()}&body=%7B%22source%22:%22run%22,%22activityId%22:${activityId},%22encryptProjectId%22:%22${$.encryptProjectId}%22,%22encryptAssignmentId%22:%22${helpEncryptAssignmentId}%22,%22assignmentType%22:2,%22itemId%22:%22${$.code}%22,%22actionType%22:0%7D`;
       break;
     default:
       console.log(`错误${type}`);
@@ -270,7 +306,8 @@ function getPostRequest(url) {
     'Cookie' : $.cookie ,
     'Connection' : `keep-alive`,
     'Accept' : `application/json, text/plain, */*`,
-    'Referer' : `https://pro.m.jd.com/mall/active/47w2FM3CZDer1C7ASmiehTveqG3d/index.html`,
+    // 'Referer' : `https://pro.m.jd.com/mall/active/47w2FM3CZDer1C7ASmiehTveqG3d/index.html`,
+    'Referer' : `https://pro.m.jd.com/mall/active/${mallActive}/index.html`,
     'Host' : `api.m.jd.com`,
     'User-Agent' : UA,
     'Accept-Language' : `zh-cn`,
