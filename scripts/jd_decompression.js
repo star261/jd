@@ -1,7 +1,7 @@
 /**
 蚊子腿豆子，24号应该可以参与瓜分
 活动到24号。一天可以跑2次
-cron 5 6,8 12-24 8 *  https://raw.githubusercontent.com/star261/jd/main/scripts/jd_appliances.js
+cron 5 6,8 12-24 8 *  https://raw.githubusercontent.com/star261/jd/main/scripts/jd_decompression.js
  */
 const $ = new Env('热血心跳,狂解压');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
