@@ -58,7 +58,7 @@ let autoCodeList = []
         for (let j = 0; j < autoCodeList.length && $.canHelp; j++) {
             let code = autoCodeList[j];
             console.log(`【抢京豆】${$.UserName} 去助力作者`);
-            await help(code.id, code.valueOf());
+            await help(code.id, code.value);
             await $.wait(2000);
         }
     }
