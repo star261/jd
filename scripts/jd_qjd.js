@@ -42,7 +42,7 @@ let autoCodeList = []
     }else{
         autoCodeList = [];
     }
-    for (let i = 0; i < cookiesArr.length/3; i++) {
+    for (let i = 0; i < Math.ceil(cookiesArr.length/10); i++) {
         let index = i + 1;
         cookie = cookiesArr[i];
         $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
