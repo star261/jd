@@ -180,7 +180,7 @@ function getUserInfo() {
                 } else {
                     if (safeGet(data)) {
                         data = JSON.parse(data);
-                        if(data.data.jklInfo) {
+                        if(data && data.data && data.data.jklInfo) {
                             $.actId = data.data.jklInfo.keyId
                             let {shareCode, groupCode} = data.data
                             if (!shareCode) {
@@ -195,6 +195,8 @@ function getUserInfo() {
                                 console.log(`\n京东账号 ${$.nickName || $.UserName} 抢京豆邀请码：${shareCode}\n`);
                                 $.newShareCodes.push([shareCode, groupCode,$.UserName])
                             }
+                        }else{
+                            console.log(JSON.stringify(data));
                         }
                     }
                 }
