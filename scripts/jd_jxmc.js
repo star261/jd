@@ -229,7 +229,7 @@ async function buyChick(configInfo,homePageInfo,cardInfo){
         return;
     }
     let canBuy = 6 - Number(homePageInfo.petinfo.length)
-    let cardList = cardInfo.cardinfo;
+    let cardList = cardInfo.cardinfo || [];
     for (let i = cardList.length-1; i >= 0 && canBuy > 0; i--) {
         let oneCardInfo = cardList[i];
         if(oneCardInfo.currnum === oneCardInfo.neednum && canBuy > 0){
