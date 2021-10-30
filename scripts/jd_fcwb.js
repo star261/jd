@@ -78,7 +78,7 @@ async function main() {
     console.log(`fcwbinviteCode='${homeInfo.inviteCode}'`)
     console.log(`fcwbinviter='${homeInfo.markedPin}'`)
     if(fcwbinviter && fcwbinviteCode){
-        console.log(`去助力:${homeInfo.markedPin}`);
+        console.log(`去助力:${fcwbinviter}`);
         await takeRequest(`happyDigHelp`,`{"linkId":"SS55rTBOHtnLCm3n9UMk7Q","inviter":"${fcwbinviter}","inviteCode":"${fcwbinviteCode}"}`);
         //console.log(`助力结果：${JSON.stringify(HelpInfo)}`);
     }
