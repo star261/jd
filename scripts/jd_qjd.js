@@ -1,7 +1,7 @@
 /**
 抢京豆
 若作者未满助力，第一个账号会助力作者，其他账号内部互助，位置在前的优先
-cron 0 0,1 * * * https://raw.githubusercontent.com/star261/jd/main/scripts/jd_qjd.js
+cron 0 0,12,20 * * * https://raw.githubusercontent.com/star261/jd/main/scripts/jd_qjd.js
  * */
 const $ = new Env('qjd');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
