@@ -61,7 +61,7 @@ let autoCodeList = []
             await $.wait(2000);
         }
     }
-    for (let i = 0; i < cookiesArr.length; i++) {
+    for (let i = 1; i < cookiesArr.length; i++) {
         $.canHelp = true;
         cookie = cookiesArr[i];
         $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
