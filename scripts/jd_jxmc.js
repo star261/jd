@@ -147,6 +147,10 @@ async function main() {
         return;
     }
     console.log(`获取获得详情成功,总共有小鸡：${petidList.length}只,鸡蛋:${homePageInfo.eggcnt}个,金币:${homePageInfo.coins},互助码：${homePageInfo.sharekey}`);
+    if(!petidList || petidList.length === 0){
+        console.log(`账号内没有小鸡，暂停执行`);
+        return ;
+    }
     $.inviteCodeList.push({'use':$.UserName,'code':homePageInfo.sharekey,'max':false,'activeid':activeid});
     if(JSON.stringify(visitBackInfo) !== '{}'){
         if(visitBackInfo.iscandraw === 1){
