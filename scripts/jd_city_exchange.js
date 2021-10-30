@@ -22,6 +22,9 @@ let UA = '',uuid = '';
         return;
     }
     for (let i = 0; i < cookiesArr.length;i++) {
+        if(i === 5){
+            continue;
+        }
         if (cookiesArr[i]) {
             cookie = cookiesArr[i];
             $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
@@ -66,7 +69,9 @@ async function main() {
     try {
         $.money = 0;
         await getInfo('', true);//获取助力码
-        while(Number($.money) > 5){
+        $.flag = true;
+        while(Number($.money) > 5 && $.flag){
+            $.flag = false
             console.log(`\n兑换红包`);
             await city_withdraw();
             await $.wait(3000)
@@ -85,11 +90,15 @@ function city_withdraw() {
                     console.log(`${JSON.stringify(err)}`)
                     console.log(`${$.name} API请求失败，请检查网路重试`)
                 } else {
+
                     if (safeGet(data)) {
                         console.log(`兑换红包结果${data}`);
                         data = JSON.parse(data);
                         $.money = data.data.result.poolMoney || 0;
                         console.log(`剩余：${$.money}`)
+                        if(data.data.bizCode === 0){
+                            $.flag = true;
+                        }
                     }
                 }
             } catch (e) {
