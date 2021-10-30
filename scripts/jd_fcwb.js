@@ -39,7 +39,6 @@ let fcwbinviteCode = "";
         fcwbinviter = actCodeInfo.fcwbinviter;
         fcwbinviteCode = actCodeInfo.fcwbinviteCode;
     }
-    await requestAlgo();
     for (let i = 0; i < cookiesArr.length; i++) {
         if (cookiesArr[i]) {
             cookie = cookiesArr[i];
