@@ -90,7 +90,7 @@ async function main() {
     await getUserInfo()
 }
 
-function getAuthorShareCode(url = "https://cdn.jsdelivr.net/gh/gitupdate/updateTeam@master/shareCodes/jd_red.json") {
+function getAuthorShareCode(url) {
     return new Promise(resolve => {
         const options = {
             url: `${url}?${new Date()}`, "timeout": 10000, headers: {
