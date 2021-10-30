@@ -22,9 +22,6 @@ let UA = '',uuid = '';
         return;
     }
     for (let i = 0; i < cookiesArr.length;i++) {
-        if(i === 5){
-            continue;
-        }
         if (cookiesArr[i]) {
             cookie = cookiesArr[i];
             $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
