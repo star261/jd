@@ -1,6 +1,7 @@
 //还有21 22 23点
 const $ = new Env('沸腾之夜摇一摇');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [];
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {

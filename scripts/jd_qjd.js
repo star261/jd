@@ -5,6 +5,7 @@ cron 0 0,12,20 * * * https://raw.githubusercontent.com/star261/jd/main/scripts/j
  * */
 const $ = new Env('qjd');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [];
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {

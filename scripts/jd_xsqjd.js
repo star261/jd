@@ -5,6 +5,7 @@ cron 23 7,9 * * * https://raw.githubusercontent.com/star261/jd/main/scripts/jd_x
 * */
 const $ = new Env('限时抢京豆');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [];
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {

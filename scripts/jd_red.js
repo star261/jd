@@ -5,6 +5,7 @@ cron 0 0,12,20 * * * https://raw.githubusercontent.com/star261/jd/main/scripts/j
 * */
 const $ = new Env('双11红包');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 const flCode = $.isNode() ? (process.env.FLCODE ? process.env.FLCODE : 'yww4UVL'):'yww4UVL';
 let cookiesArr = [];
 if ($.isNode()) {
@@ -34,7 +35,7 @@ $.shareCode = '';
             $.index = i + 1;
             $.isLogin = true;
             $.nickName = '';
-            //await TotalBean();
+            await TotalBean();
             console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
             if (!$.isLogin) {
                 $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
