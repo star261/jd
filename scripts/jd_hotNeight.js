@@ -90,7 +90,6 @@ let shareList = [];
 
 async function main(cookie) {
     let userName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1]);
-    console.log(`\n******开始【京东账号】${userName}*********\n`);
     let initInfo = await takeRequest(cookie,`party1031_init`);
     if(JSON.stringify(initInfo) === `{}` || !initInfo.result){
         console.log(`${userName},黑号`);
