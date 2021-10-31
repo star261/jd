@@ -10,6 +10,7 @@ const $ = new Env('发财挖宝');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [];
+let link = `yCcpwTLIbY6pjaM42ACUVg`;
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {
         cookiesArr.push(jdCookieNode[item])
@@ -72,7 +73,7 @@ let fcwbinviteCode = "";
 });
 
 async function main() {
-    let homeInfo = await takeRequest(`happyDigHome`,`{"linkId":"SS55rTBOHtnLCm3n9UMk7Q"}`,true);
+    let homeInfo = await takeRequest(`happyDigHome`,`{"linkId":"${link}"}`,true);
     if(JSON.stringify(homeInfo) === '{}' || !homeInfo){
         console.log(`都黑号了，别薅了`);
         return;
@@ -82,7 +83,7 @@ async function main() {
     console.log(`fcwbinviter='${homeInfo.markedPin}'`)
     if(fcwbinviter && fcwbinviteCode){
         console.log(`去助力:${fcwbinviter}`);
-        await takeRequest(`happyDigHelp`,`{"linkId":"SS55rTBOHtnLCm3n9UMk7Q","inviter":"${fcwbinviter}","inviteCode":"${fcwbinviteCode}"}`);
+        await takeRequest(`happyDigHelp`,`{"linkId":"${link}","inviter":"${fcwbinviter}","inviteCode":"${fcwbinviteCode}"}`);
         //console.log(`助力结果：${JSON.stringify(HelpInfo)}`);
     }
     $.freshFlag = false;
@@ -93,13 +94,13 @@ async function main() {
     await doTask();
     if($.freshFlag){
         await $.wait(2000);
-        homeInfo = await takeRequest(`happyDigHome`,`{"linkId":"SS55rTBOHtnLCm3n9UMk7Q"}`,true);
+        homeInfo = await takeRequest(`happyDigHome`,`{"linkId":"${link}"}`,true);
     }
     let blood = homeInfo.blood;
     console.log(`当前有${blood}滴血`);
 }
 async function doTask(){
-    let taskList = await takeRequest(`apTaskList`,`{"linkId":"SS55rTBOHtnLCm3n9UMk7Q"}`);
+    let taskList = await takeRequest(`apTaskList`,`{"linkId":"${link}"}`);
     for (let i = 0; i < taskList.length; i++) {
         let oneTask = taskList[i];
         if(oneTask.taskFinished){
@@ -109,19 +110,19 @@ async function doTask(){
         if(oneTask.taskType === 'BROWSE_CHANNEL'){
             if(oneTask.id === 360){
                 console.log(`任务：${oneTask.taskTitle},${oneTask.taskShowTitle},去执行`);
-                let doTask = await takeRequest(`apDoTask`,`{"linkId":"SS55rTBOHtnLCm3n9UMk7Q","taskType":"${oneTask.taskType}","taskId":${oneTask.id},"channel":4,"itemId":"${encodeURIComponent(oneTask.taskSourceUrl)}","checkVersion":false}`);
+                let doTask = await takeRequest(`apDoTask`,`{"linkId":"${link}","taskType":"${oneTask.taskType}","taskId":${oneTask.id},"channel":4,"itemId":"${encodeURIComponent(oneTask.taskSourceUrl)}","checkVersion":false}`);
                 console.log(`执行结果：${JSON.stringify(doTask)}`);
                 await $.wait(2000);
                 $.freshFlag = true;
             }
             if(oneTask.id === 357){
-                // let detail = await takeRequest(`apTaskDetail`,`{"linkId":"SS55rTBOHtnLCm3n9UMk7Q","taskType":"${oneTask.taskType}","taskId":${oneTask.id},"channel":4}`);
+                // let detail = await takeRequest(`apTaskDetail`,`{"linkId":"${link}","taskType":"${oneTask.taskType}","taskId":${oneTask.id},"channel":4}`);
                 // await $.wait(1000);
                 // let status = detail.status;
                 // let taskItemList =  detail.taskItemList;
                 // for (let j = 0; j < taskItemList.length && j < (status.finishNeed - status.userFinishedTimes); j++) {
                 //     console.log(`浏览：${taskItemList[j].itemName}`);
-                //     let doTask = await takeRequest(`apDoTask`,`{"linkId":"SS55rTBOHtnLCm3n9UMk7Q","taskType":"${oneTask.taskType}","taskId":${oneTask.id},"channel":4,"itemId":"${encodeURIComponent(taskItemList[j].itemId)}","checkVersion":false}`);
+                //     let doTask = await takeRequest(`apDoTask`,`{"linkId":"${link}","taskType":"${oneTask.taskType}","taskId":${oneTask.id},"channel":4,"itemId":"${encodeURIComponent(taskItemList[j].itemId)}","checkVersion":false}`);
                 //     console.log(`执行结果：${JSON.stringify(doTask)}`);
                 //     await $.wait(2000);
                 // }
@@ -143,7 +144,7 @@ async function takeRequest(functionId,bodyInfo,h5stFlag = false){
         'Accept-Encoding' : `gzip, deflate, br`,
         'user-agent': $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
         'Accept-Language' : `zh-cn`,
-        'Referer' : `https://bnzf.jd.com/?activityId=SS55rTBOHtnLCm3n9UMk7Q`
+        'Referer' : `https://bnzf.jd.com/?activityId=${link}`
     };
     let sentInfo = {url: url, headers: headers};
     return new Promise(async resolve => {
