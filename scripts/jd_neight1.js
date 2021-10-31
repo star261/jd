@@ -47,6 +47,10 @@ async function main(cookie) {
 
     let retInfo = await takeRequest(cookie,`party1031_welcome`,'{}',true);
     console.log(`${userName},结果：`+JSON.stringify(retInfo));
+    await $.wait(2000);
+    await takeRequest(cookie,`party1031_time`,'{}',false);
+    let aaa = await takeRequest(cookie,`party1031_withdraw`,'{}',false);
+    console.log(`结果：`+JSON.stringify(aaa));
 }
 async function takeRequest(cookie,functionId,bodyInfo='{}',h5stFlag=false){
     let body = `functionId=${functionId}&body=${bodyInfo}&client=wh5&clientVersion=1.0.0&appid=o2_act&uuid=8888`
