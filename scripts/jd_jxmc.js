@@ -253,7 +253,7 @@ async function doUserLoveInfo() {
             //     awardInfo = await takeRequest(`newtasksys`,`newtasksys_front/Award`,`source=jxmc_zanaixin&taskId=${oneTask.taskId}&bizCode=jxmc_zanaixin`,`bizCode%2Csource%2CtaskId`,true);
             //     console.log(`领取爱心成功，获得${JSON.parse(awardInfo.prizeInfo).prizeInfo}`);
             // }
-            
+
             // if(oneTask.taskId === 2154){
             //     console.log(`去做任务：${oneTask.description}，等待5S`);
             //     awardInfo = await takeRequest(`jxmc`,`operservice/GetInviteStatus`,``,undefined,true);
