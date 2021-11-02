@@ -40,7 +40,11 @@ let shareList = [];
                 }
                 continue
             }
-            await main($.cookie)
+            try{
+                await main($.cookie)
+            }catch (e) {
+                console.log(JSON.stringify(e))
+            }
         }
     }
     if(shareList.length === 0){return;}
@@ -99,6 +103,10 @@ async function main(cookie) {
     if(JSON.stringify(taskListInfo) === '{}' || JSON.stringify(cardInfo) === '{}'){
         console.log(`${userName},获取活动详情失败2`);
         return ;
+    }
+    if(!taskListInfo || !taskListInfo.result || !taskListInfo.result.taskList){
+        console.log(`${userName},黑号`);
+        return;
     }
     let taskList = taskListInfo.result.taskList || [];
     console.log(`\n${userName},获取活动详情成功`);
