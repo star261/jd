@@ -178,7 +178,7 @@ async function takeRequest(functionId,body,ck){
                 }
             } catch (e) {
                 console.log(data);
-                $.logErr(e, resp)
+                //$.logErr(e, resp)
             } finally {
                 resolve(data.result || {});
             }

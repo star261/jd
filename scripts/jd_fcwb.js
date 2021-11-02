@@ -160,7 +160,7 @@ async function takeRequest(functionId,bodyInfo,h5stFlag = false){
                 }
             } catch (e) {
                 console.log(data);
-                $.logErr(e, resp)
+                //$.logErr(e, resp)
             } finally {
                 resolve(data.data || {});
             }
