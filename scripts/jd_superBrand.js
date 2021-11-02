@@ -93,7 +93,7 @@ let shareList = [];
 async function main(cookie) {
     let userName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1]);
     let cardInfo = await takeRequest(cookie,'showSecondFloorCardInfo',`{"source":"card"}`);
-    if( JSON.stringify(cardInfo) === '{}'){
+    if( JSON.stringify(cardInfo) === '{}' || !cardInfo || !cardInfo.result || !cardInfo.result.activityBaseInfo){
         console.log(`${userName},获取活动详情失败1`);
         return ;
     }
