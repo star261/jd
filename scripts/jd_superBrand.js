@@ -5,6 +5,7 @@ cron 10 9,13,16,19 2-8 11 * https://raw.githubusercontent.com/star261/jd/main/sc
 * */
 const $ = new Env('双11特务');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [];
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {
