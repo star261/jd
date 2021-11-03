@@ -6,7 +6,7 @@ cron 0 0,12,20 * * * https://raw.githubusercontent.com/star261/jd/main/scripts/j
 const $ = new Env('双11红包');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
-const flCode = $.isNode() ? (process.env.FLCODE ? process.env.FLCODE : 'yww4UVL'):'yww4UVL';
+const flCode = $.isNode() ? (process.env.FLCODE ? process.env.FLCODE : 'ydDZOD9'):'ydDZOD9';
 let cookiesArr = [];
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {
