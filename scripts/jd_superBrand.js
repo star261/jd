@@ -150,7 +150,26 @@ async function main(cookie) {
             console.log(`执行结果：${JSON.stringify(doInfo)}`);
             await $.wait(3000);
         }
-
+        if(oneTask.assignmentType === 3){
+            console.log(`任务：${oneTask.assignmentName},去执行,请稍稍`);
+            let itemId = oneTask.ext.followShop[0].itemId || '';
+            if(!itemId){
+                console.log(`任务：${oneTask.assignmentName},信息异常`);
+            }
+            let doInfo = await takeRequest(cookie,'superBrandDoTask',`{"source":"card","activityId":${activityId},"encryptProjectId":"${encryptProjectId}","encryptAssignmentId":"${oneTask.encryptAssignmentId}","assignmentType":${oneTask.assignmentType},"itemId":"${itemId}","actionType":0}`);
+            console.log(`执行结果：${JSON.stringify(doInfo)}`);
+            await $.wait(3000);
+        }
+        if(oneTask.assignmentType === 7){
+            console.log(`任务：${oneTask.assignmentName},去执行,请稍稍`);
+            let itemId = oneTask.ext.brandMemberList[0].itemId || '';
+            if(!itemId){
+                console.log(`任务：${oneTask.assignmentName},信息异常`);
+            }
+            let doInfo = await takeRequest(cookie,'superBrandDoTask',`{"source":"card","activityId":${activityId},"encryptProjectId":"${encryptProjectId}","encryptAssignmentId":"${oneTask.encryptAssignmentId}","assignmentType":${oneTask.assignmentType},"itemId":"${itemId}","actionType":0}`);
+            console.log(`执行结果：${JSON.stringify(doInfo)}`);
+            await $.wait(3000);
+        }
         if(oneTask.assignmentType === 5){
             let signList = oneTask.ext.sign2 || [];
             if(signList.length === 0){
