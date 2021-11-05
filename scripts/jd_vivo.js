@@ -42,7 +42,11 @@ $.shareUuid = '';
             if(nowTime < activityList[j].endTime){
                 activityID = activityList[j].id;
                 console.log(`\n活动ID：`+ activityID);
-                await main();
+                try{
+                    await main();
+                }catch (e) {
+                    console.log(`异常：`+JSON.stringify(e));
+                }
                 console.log(`防止黑IP，等待30秒`);
                 await $.wait(30000);
             }else{
