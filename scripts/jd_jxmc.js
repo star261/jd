@@ -262,7 +262,11 @@ async function doUserLoveInfo() {
             await $.wait(5500);
             console.log(`完成任务：${oneTask.description}`);
             awardInfo = await takeRequest(`newtasksys`,`newtasksys_front/Award`,`source=jxmc_zanaixin&taskId=${oneTask.taskId}&bizCode=jxmc_zanaixin`,`bizCode%2Csource%2CtaskId`,true);
-            console.log(`领取爱心成功，获得${JSON.parse(awardInfo.prizeInfo).prizeInfo}`);
+            if(awardInfo && awardInfo.prizeInfo && JSON.parse(awardInfo.prizeInfo)){
+                console.log(`领取爱心成功，获得${JSON.parse(awardInfo.prizeInfo).prizeInfo || ''}`);
+            }else{
+                console.log(`领取爱心：${JSON.stringify(awardInfo)}`);
+            }
         }
     }
     let userLoveInfo = await takeRequest(`jxmc`, `queryservice/GetUserLoveInfo`, ``, undefined, true);
@@ -419,7 +423,7 @@ async function doMotion(petidList){
         console.log(`开始第${i + 1}次割草`);
         let mowingInfo = await takeRequest(`jxmc`,`operservice/Action`,`&type=2`,'activeid%2Cactivekey%2Cchannel%2Cjxmc_jstoken%2Cphoneid%2Csceneid%2Ctimestamp%2Ctype',true);
         console.log(`获得金币：${mowingInfo.addcoins || 0}`);
-        await $.wait(1000);
+        await $.wait(2000);
         if(Number(mowingInfo.addcoins) >0 ){
             runFlag = true;
         }else{
@@ -449,7 +453,7 @@ async function doMotion(petidList){
             runFlag = false;
             console.log(`未获得金币暂停割鸡腿`);
         }
-        await $.wait(1000);
+        await $.wait(2000);
     }
 }
 async function doTask(){
